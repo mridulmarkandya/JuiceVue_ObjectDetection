@@ -73,10 +73,9 @@ def predict_image(image,confidence):
 
 
 def main():
-      st.title("Object Detection and Counting App")
-      st.write("Upload an image and see the detected objects!")
-      uploaded_image = st.file_uploader("Choose an image:", type=["jpg", "jpeg", "png"])
-
+    st.title("Object Detection and Counting App")
+    st.write("Upload an image and see the detected objects!")
+    uploaded_image = st.file_uploader("Choose an image:", type=["jpg", "jpeg", "png"])
     if uploaded_image:
         # Load and display the original image
         image = load_image(uploaded_image)
@@ -84,8 +83,6 @@ def main():
 
         
         image = resize_image(image)
-            
-
         if image:
             predict_image(image,confidence)
                 
