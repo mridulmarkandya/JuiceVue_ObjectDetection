@@ -8,7 +8,7 @@ class YOLO:
     This class loads and performs inference with a YOLOv8 model.
     """
     def __init__(self, weights_path):
-        self.model = torch.hub.load('ultralytics/yolov8', 'yolov8n', weights='/Users/mridulmarkandya/Downloads/best.pt')
+        self.model = torch.hub.load('ultralytics/yolov8', 'yolov8n', weights='/best.pt')
 
     def __call__(self, images):
         # Assuming images is a list of PIL Images
@@ -32,7 +32,7 @@ def main():
     st.image(image, caption='Uploaded Image', use_column_width=True)
 
     # Load YOLO model
-    model = YOLO('/Users/mridulmarkandya/Downloads/best.pt')  # Replace with actual path
+    model = YOLO('/best.pt')  # Replace with actual path
 
     images = [image]  # Convert to list for model inference
 
