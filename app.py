@@ -7,7 +7,7 @@ import torch
 
 class YOLO:
     def __init__(self, weights_path):
-        self.model = torch.hub.load('ultralytics/yolov8', 'yolov8n', weights= weights_path)
+        self.model = torch.load(weights_path)
 
     def __call__(self, images):
         results = self.model(images)
