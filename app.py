@@ -1,6 +1,3 @@
-import subprocess
-subprocess.check_call(['pip', 'install', 'ultralytics'])
-
 import streamlit as st
 from ultralytics import YOLO
 from collections import Counter
