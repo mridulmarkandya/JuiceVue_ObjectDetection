@@ -16,14 +16,21 @@ def load_image(image_file):
     return None
 
 def add_text_to_image(image_array, text, position=(10, 10), font_size=50, color='red'):
+    
     image = Image.fromarray(image_array)
     draw = ImageDraw.Draw(image)
     draw.text(position, text, fill=color)  #, font=font if you loaded a font
     return image
 
+
 def predict_image(image,confidence):
+    
+    #home = r'/Users/mridulmarkandya/Downloads'
     model_path = rf'best.pt'
-    st.title("JuiceVue")
+
+    st.title("Object Detection")
+    st.caption('Updload a photo by selecting :blue[Browse files]')
+    st.caption('Then click the :blue[Detect Objects] button and check the result.')    
     
     try:
         model = YOLO(model_path)
@@ -32,7 +39,7 @@ def predict_image(image,confidence):
             f"Unable to load model. Check the specified path: {model_path}")
         st.error(ex)
     
-    if st.button('Detect Objects'):
+    if st.sidebar.button('Detect Objects'):
         res = model.predict(image, conf=confidence, line_width=1, show_labels=True, 
                             show_conf=False)
         
@@ -43,13 +50,15 @@ def predict_image(image,confidence):
         class_name_counts = {class_names.get(id, f"Class_{id}"): count for id, count in class_id_counts.items()}
         count_list = ''
         for class_name, count in class_name_counts.items():
+            # Properly use append to add formatted strings to the list
             count_list=count_list+(f"{class_name:<17}: {count} \n")
+        
         res_plotted = res[0].plot(labels=True, line_width=1)[:, :, ::-1]
+
         res_plotted = add_text_to_image(res_plotted.copy(), f"Total detections : {len(boxes)}\n{count_list}", position=(10, 10), font_size=30, color='red')
         
         st.image(res_plotted,
-                 caption='Detected Image',
-                 width=640                 
+                 caption='Detected Image'                
                  )
         try:
             st.write(f"Total detections : {len(boxes)}")
@@ -64,21 +73,22 @@ def predict_image(image,confidence):
 
 
 def main():
-    st.title("Object Detection and Counting App")
-    st.write("Upload an image and see the detected objects!")
-    uploaded_file = st.file_uploader("Choose an image:", type=["jpg", "jpeg", "png"])
-        # Model Options
-        confidence = float(st.slider("Select Model Confidence", 25, 100, 40)) / 100
+      st.title("Object Detection and Counting App")
+      st.write("Upload an image and see the detected objects!")
+      uploaded_image = st.file_uploader("Choose an image:", type=["jpg", "jpeg", "png"])
 
     if uploaded_image:
         # Load and display the original image
         image = load_image(uploaded_image)
         st.image(image, caption='Uploaded Image', use_column_width=True)
+
+        
         image = resize_image(image)
+            
+
         if image:
             predict_image(image,confidence)
                 
 
 if __name__ == "__main__":
     main()
-
