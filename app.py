@@ -40,7 +40,7 @@ def predict_image(image):
         st.error(ex)
 
         if st.button('Detect Objects'):
-        res = model.predict(image, line_width=1, show_labels=True, show_conf=False)
+            res = model.predict(image, line_width=1, show_labels=True, show_conf=False)
         boxes = res[0].boxes
         class_names = res[0].names
         class_ids_list = res[0].boxes.cls.int().tolist()
