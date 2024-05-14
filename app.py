@@ -23,7 +23,7 @@ def add_text_to_image(image_array, text, position=(10, 10), font_size=50, color=
     return image
 
 
-def predict_image(image,confidence):
+def predict_image(image):
     
     #home = r'/Users/mridulmarkandya/Downloads'
     model_path = rf'best.pt'
@@ -40,7 +40,7 @@ def predict_image(image,confidence):
         st.error(ex)
     
     if st.sidebar.button('Detect Objects'):
-        res = model.predict(image, conf=confidence, line_width=1, show_labels=True, 
+        res = model.predict(image, line_width=1, show_labels=True, 
                             show_conf=False)
         
         boxes = res[0].boxes
@@ -82,7 +82,7 @@ def main():
         st.image(image, caption='Uploaded Image', use_column_width=True)
 
         if image:
-            predict_image(image,confidence)
+            predict_image(image)
                 
 
 if __name__ == "__main__":
