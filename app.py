@@ -30,7 +30,7 @@ def add_text_to_image(image_array, text, position=(10, 10), font_size=30, color=
 
 def predict_image(image):
     """Predicts objects in an image and displays results."""
-    model_path = 'best.pt'  # Assuming 'best.pt' is in the same directory
+    model_path = rf'best.pt'  # Assuming 'best.pt' is in the same directory
 
     try:
         model = YOLO(model_path)
