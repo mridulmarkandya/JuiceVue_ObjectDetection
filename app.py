@@ -30,7 +30,7 @@ def main():
     st.image(image, caption='Uploaded Image', use_column_width=True)
 
     
-    model = YOLO('./best.pt')
+    model = YOLO('.\best.pt')
 
     images = [image]
 
