@@ -38,7 +38,9 @@ def predict_image(image):
         st.error(
             f"Unable to load model. Check the specified path: {model_path}")
         st.error(ex)
-        
+
+        if st.button('Detect Objects'):
+        res = model.predict(image, conf=confidence, line_width=1, show_labels=True, show_conf=False)
         boxes = res[0].boxes
         class_names = res[0].names
         class_ids_list = res[0].boxes.cls.int().tolist()
