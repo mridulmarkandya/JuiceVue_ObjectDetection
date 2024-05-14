@@ -1,7 +1,6 @@
-!pip install streamlit
-!pip install ultralytics
-!pip install collections
-!pip install PIL
+pip install streamlit
+pip install ultralytics
+pip install PIL
 
 
 import streamlit as st
