@@ -8,6 +8,7 @@ import torch
 class YOLO:
     def __init__(self, weights_path):
         self.model = torch.load(weights_path)
+        print(type(self.model))
 
     def __call__(self, images):
         results = self.model(images)
@@ -24,7 +25,6 @@ def main():
   st.title("Object Detection and Counting App")
   st.write("Upload an image and see the detected objects!")
   uploaded_file = st.file_uploader("Choose an image:", type=["jpg", "jpeg", "png"])
-
   if uploaded_file is not None:
     image = Image.open(uploaded_file)
     st.image(image, caption='Uploaded Image', use_column_width=True)
