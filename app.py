@@ -41,32 +41,32 @@ def predict_image(image):
 
         if st.button('Detect Objects'):
             res = model.predict(image, line_width=1, show_labels=True, show_conf=False)
-        boxes = res[0].boxes
-        class_names = res[0].names
-        class_ids_list = res[0].boxes.cls.int().tolist()
-        class_id_counts = Counter(class_ids_list)
-        class_name_counts = {class_names.get(id, f"Class_{id}"): count for id, count in class_id_counts.items()}
-        count_list = ''
-        for class_name, count in class_name_counts.items():
-            # Properly use append to add formatted strings to the list
-            count_list=count_list+(f"{class_name:<17}: {count} \n")
-        
-        res_plotted = res[0].plot(labels=True, line_width=1)[:, :, ::-1]
-
-        res_plotted = add_text_to_image(res_plotted.copy(), f"Total detections : {len(boxes)}\n{count_list}", position=(10, 10), font_size=30, color='red')
-        
-        st.image(res_plotted,
-                 caption='Detected Image'                
-                 )
-        try:
-            st.write(f"Total detections : {len(boxes)}")
+            boxes = res[0].boxes
+            class_names = res[0].names
+            class_ids_list = res[0].boxes.cls.int().tolist()
+            class_id_counts = Counter(class_ids_list)
+            class_name_counts = {class_names.get(id, f"Class_{id}"): count for id, count in class_id_counts.items()}
+            count_list = ''
             for class_name, count in class_name_counts.items():
                 # Properly use append to add formatted strings to the list
-                st.write(f"{class_name} : {count}")
-
-
-        except Exception:
-            st.write("No image is uploaded yet!")
+                count_list=count_list+(f"{class_name:<17}: {count} \n")
+            
+            res_plotted = res[0].plot(labels=True, line_width=1)[:, :, ::-1]
+    
+            res_plotted = add_text_to_image(res_plotted.copy(), f"Total detections : {len(boxes)}\n{count_list}", position=(10, 10), font_size=30, color='red')
+        
+            st.image(res_plotted,
+                     caption='Detected Image'                
+                     )
+            try:
+                st.write(f"Total detections : {len(boxes)}")
+                for class_name, count in class_name_counts.items():
+                    # Properly use append to add formatted strings to the list
+                    st.write(f"{class_name} : {count}")
+    
+    
+            except Exception:
+                st.write("No image is uploaded yet!")
     
 
 
