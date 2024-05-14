@@ -7,7 +7,7 @@ import torch
 
 class YOLO:
     def __init__(self, weights_path):
-        self.model = torch.hub.load('ultralytics/yolov8', 'yolov8n', weights='best.pt')
+        self.model = torch.hub.load('ultralytics/yolov8', 'yolov8n', weights= weights_path)
 
     def __call__(self, images):
         results = self.model(images)
@@ -30,7 +30,7 @@ def main():
     st.image(image, caption='Uploaded Image', use_column_width=True)
 
     
-    model = YOLO('best.pt')
+    model = YOLO('./best.pt')
 
     images = [image]
 
