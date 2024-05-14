@@ -1,4 +1,5 @@
 import streamlit as st
+import cv2 
 from ultralytics import YOLO
 from collections import Counter
 from PIL import Image
