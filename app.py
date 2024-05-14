@@ -1,12 +1,8 @@
-pip install streamlit
-pip install ultralytics
-pip install PIL
-
-
 import streamlit as st
 from ultralytics import YOLO
 from collections import Counter
 from PIL import Image
+import torch
 
 class YOLO:
     def __init__(self, weights_path):
