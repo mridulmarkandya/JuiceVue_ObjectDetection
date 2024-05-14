@@ -1,3 +1,6 @@
+import subprocess
+subprocess.run(["pip", "install", "-r", "requirement.txt"])
+
 import streamlit as st
 from ultralytics import YOLO
 from collections import Counter
