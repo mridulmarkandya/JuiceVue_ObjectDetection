@@ -1,8 +1,5 @@
 import subprocess
-import sys
-subprocess.check_call([sys.executable, "-m", "pip", "install", "ultralytics"])
-#import subprocess
-#subprocess.run(["pip", "install", "-r", "requirement.txt"])
+subprocess.check_call(['pip', 'install', 'ultralytics'])
 
 import streamlit as st
 from ultralytics import YOLO
