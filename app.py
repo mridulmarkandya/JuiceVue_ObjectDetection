@@ -81,8 +81,6 @@ def main():
         image = load_image(uploaded_image)
         st.image(image, caption='Uploaded Image', use_column_width=True)
 
-        
-        image = resize_image(image)
         if image:
             predict_image(image,confidence)
                 
