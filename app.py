@@ -1,3 +1,9 @@
+!pip install streamlit
+!pip install ultralytics
+!pip install collections
+!pip install PIL
+
+
 import streamlit as st
 from ultralytics import YOLO
 from collections import Counter
